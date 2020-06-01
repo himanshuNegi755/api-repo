@@ -6,11 +6,13 @@ var keys = require('./keys');
 var User = require('../model/user');
 
 passport.serializeUser((user, done) => {
+    console.log('serializing user');
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
+        console.log('deserializing user');
         done(null, user);
     });
 });
